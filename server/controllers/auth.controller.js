@@ -48,9 +48,23 @@ authController.login = async(req, res, next) => {
                     message: req.flash()
                 })
             }
-            return res.status(200).json({ user_id: user._id });
+            req.session.userid = user._id;
+            return res.status(200).json({
+                user_id: user._id,
+                token: req.session.userid,
+            });
         }
     )(req, res, next)
+}
+
+authController.logout = async(req, res, next) => {
+    req.session.destroy();
+    req.session.userid = null;
+    req.logout();
+    res.json({
+        status: 1,
+        message: "Sesión cerrada"
+    })
 }
 
 module.exports = authController;

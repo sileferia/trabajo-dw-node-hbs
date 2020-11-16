@@ -9,8 +9,6 @@ const flash = require('connect-flash');
 
 // Middlewares
 app.use(morgan('dev'));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 app.use(session({
     secret: 'secret-session-artesanias',
     resave: false,
@@ -26,7 +24,11 @@ app.use((req, res, next) => {
     next();
 })
 
+
+
 // Settings
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.set('port', process.env.PORT || 3000);
 
 app.set('views', path.join(__dirname, '/views'));

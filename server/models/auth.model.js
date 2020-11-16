@@ -3,6 +3,10 @@ const { Schema } = mongoose;
 const bcrypt = require('bcrypt-nodejs');
 
 const usuarioSchema = new Schema({
+    rol: {
+        type: String,
+        required: true
+    },
     nid: {
         type: String,
         required: true
@@ -12,8 +16,7 @@ const usuarioSchema = new Schema({
         required: true
     },
     apellidos: {
-        type: String,
-        required: true
+        type: String
     },
     nacimiento: {
         type: String,
