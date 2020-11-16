@@ -7,4 +7,37 @@ appController.Home = async(req, res) => {
     res.render('index');
 }
 
+appController.About = async(req, res) => {
+
+    res.render('about');
+}
+
+appController.Login = async(req, res) => {
+
+    res.render('login');
+}
+
+appController.Register = async(req, res) => {
+
+    res.render('register');
+}
+
+
+appController.Profile = async(req, res) => {
+
+    res.render('profile');
+}
+
+appController.Productos = async(req, res) => {
+
+    res.render('productos');
+}
+
+appController.productosUsuario = async(req, res) => {
+
+    res.render('productosUser');
+}
+
+
+
 module.exports = appController;

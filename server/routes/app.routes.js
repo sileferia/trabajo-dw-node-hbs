@@ -8,7 +8,7 @@ const productosController = require('../controllers/productos.controller');
 const multer = require('multer');
 
 const storage = multer.diskStorage({
-    destination: path.join(__dirname, '../public/images'),
+    destination: path.join(__dirname, '../public/images/productos'),
     filename: (req, file, cb) => {
         if (req.body.nameImage != '') {
             file.filename = req.body.nameImage;
@@ -29,10 +29,21 @@ function formatearNombreImagen(originalname) {
     return filename + Date.now() + ".webp";
 }
 
-
+// RUTAS PARA LA NAVEGACIÓN
+/* START */
 // Ruta inicial
 AppRouter.get('/', appController.Home);
+AppRouter.get('/home', appController.Home);
+AppRouter.get('/about', appController.About);
+AppRouter.get('/login', appController.Login);
+AppRouter.get('/register', appController.Register);
 
+
+
+
+
+// RUTAS PARA LOS USUARIOS
+/* START */
 // Ruta que crea un usuario
 AppRouter.post('/auth/register', authController.registro);
 

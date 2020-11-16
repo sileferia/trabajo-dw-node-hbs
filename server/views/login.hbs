@@ -1,1 +1,22 @@
-<h2>Logeate</h2>
+{{> head }}
+    {{> navbar }}
+
+
+    <div class="box-login">
+        <div class="box-datos-login">
+            <form method="POST" class="form-login">
+                <h3>Login</h3>
+                <div class="datos-form">
+                    <input type="email" class="email" name="email" id="email" placeholder="example@artesanias.com" required>
+                    <input type="password" class="pass" name="password" id="password" placeholder="**********" required>
+                </div>
+                <div class="login-options">
+                    <button class="button" onclick="login()">Login</button>
+                    <a class="button" href="/register">¿No tienes Cuenta?, Registrate</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{{> footer }}
