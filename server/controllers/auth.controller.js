@@ -32,7 +32,11 @@ authController.registro = async(req, res, next) => {
                     message: req.flash()
                 })
             }
-            return res.json(200, { user_id: user._id });
+
+            return res.json(200, {
+                status: 1,
+                message: "Registro Existoso"
+            });
         }
     )(req, res, next)
 }

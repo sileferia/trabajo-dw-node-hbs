@@ -1,19 +1,45 @@
 {{> head }}
-    {{> navbar }}
+    {{> navbar}}
 
 
     <div class="box-register">
         <div class="box-datos-register">
             <form method="POST" class="form-register">
-                <h3>Login</h3>
+                <h3>Registro</h3>
                 <span class="error-register"></span>
                 <div class="datos-form">
-                    <input type="email" class="email" name="email" id="email" placeholder="example@artesanias.com" required>
-                    <input type="password" class="pass" name="password" id="password" placeholder="**********" required>
+                    <div class="datos-personales-box">
+                        <input type="text" class="rol" name="rol" id="rol" value="1" hidden>
+                        <span class="datos-personales">Datos Personales</span>
+                        <div class="box-nid">
+                            <select class="tipoId" name="tipoId" id="tipoId" required>
+                                <option value="1" selected disabled>Selecione</option>
+                                <option value="CE">Cedula Extranjera</option>
+                                <option value="CC">Cedula</option>
+                                <option value="TI">Tarjeta de Identidad</option>
+                            </select>
+                            <input type="text" class="nid" name="nid" id="nid" placeholder="#" required>
+                            <span class="error-css"></span>
+                        </div>
+                        <input type="text" class="nombres" name="nombres" id="nombres" placeholder="Nombres" required>
+                        <input type="text" class="apellidos" name="apellidos" id="apellidos" placeholder="Apellidos" required>
+                        <input type="date" class="nacimiento" name="nacimiento" id="nacimiento" placeholder="12-12-2020" required>
+                    </div>
+                    
+                    <div class="datos-contacto-login-box">        
+                        <span class="datos-contacto">Datos de Contacto</span>
+                        <input type="tel" class="telefono" name="telefono" id="telefono" placeholder="Telefono" required>
+                        <input type="text" class="direccion" name="direccion" id="direccion" placeholder="Direccion, Barrio, Municipio, Departamento" required>
+                        <span class="datos-login">Datos de Login</span>
+                        <input type="email" class="email" name="email" id="email" placeholder="example@artesanias.com" required>
+                        <input type="password" class="pass" name="password" id="password" placeholder="**********" required>
+                        <span class="error-password"></span>
+                    </div>
                 </div>
                 <div class="register-options">
-                    <button class="button" onclick="login()">Registrar</button>
-                    <a class="button" href="/register">¿Ya tienes Cuenta?, Inicia Sesión</a>
+                    {{> cargando}}
+                    <button class="button btn-register">Registrar</button>
+                    <a class="button" href="/login">¿Ya tienes Cuenta?, Inicia Sesión</a>
                 </div>
             </form>
         </div>

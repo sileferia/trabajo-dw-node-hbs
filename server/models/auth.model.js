@@ -7,6 +7,10 @@ const usuarioSchema = new Schema({
         type: String,
         required: true
     },
+    tipoId: {
+        type: String,
+        required: true
+    },
     nid: {
         type: String,
         required: true
@@ -34,7 +38,7 @@ const usuarioSchema = new Schema({
         type: Number
     },
     direcciones: {
-        type: Array
+        type: String
     }
 })
 
