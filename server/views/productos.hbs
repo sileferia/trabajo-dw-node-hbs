@@ -3,9 +3,15 @@
 
     <pre>
         {{productos}}
+        <input type="text" name="productos" id="productos" value="{{productos}}">
+        
     </pre>
 
     <script>
+        $(document).ready(() => {
+            const productosJson = JSON.stringify($('#productos')[0].value);
+            console.log(productosJson);
+        })
     </script>
 
 {{> footer}}
