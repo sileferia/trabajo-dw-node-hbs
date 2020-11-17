@@ -37,7 +37,6 @@ img {
 .button {
     display: inline-block;
     text-decoration: none;
-    border: 2px solid #409A04;
     border-radius: 10px;
     padding: 15px;
     width: auto;
@@ -46,6 +45,7 @@ img {
     color: $text-negro;
     cursor: pointer;
     background-color: $text-blanco;
+    text-align: center;
 }
 
 .bg-azul {
@@ -64,6 +64,24 @@ img {
     background-color: #1E4207;
 }
 
+.error {
+    transition: 1s;
+    animation: parpadeo 1s infinite;
+}
+
+@keyframes parpadeo {
+    0% {
+        border: none;
+    }
+    100% {
+        border: 1px solid red;
+    }
+}
+
+.hg-auto {
+    height: 65% !important;
+}
+
 // Header
 .header {
     background-color: #fff;
@@ -74,6 +92,15 @@ img {
     align-items: center;
     z-index: 1000;
     position: relative;
+    flex-wrap: wrap;
+    overflow: hidden;
+    transition: .5s height;
+    @media screen and (max-width: 768px) {
+        height: 35%;
+    }
+    @media screen and (max-width: 420px) {
+        height: 45px;
+    }
     .box-logo {
         flex: 0 1 30%;
         .logo {
@@ -83,12 +110,34 @@ img {
             font-size: 35px;
         }
     }
+    .toggle {
+        color: #000;
+        font-size: 30px;
+        display: none;
+        flex: 0 1 20%;
+        text-decoration: none;
+        @media screen and (max-width: 420px) {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex: 0 1 35%;
+        }
+    }
     .nav {
         flex: 0 1 50%;
+        @media screen and (max-width: 420px) {
+            flex: 0 1 50%;
+        }
         ul {
             display: flex;
             justify-content: flex-end;
             align-items: center;
+            @media screen and (max-width: 420px) {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 0;
+            }
             li {
                 // border: 1px solid red;
                 display: inline-block;
@@ -123,24 +172,15 @@ img {
     background-attachment: fixed;
     height: 75%;
     position: relative;
-    .box-texto {
-        width: 50%;
-        margin: 0 auto;
-        margin-top: 30px;
-        background: #fefefe;
-        padding: 15px;
-        text-align: center;
-        border-radius: 10px;
-        box-shadow: 0px 0px 20px -1px #000;
-        h3 {
-            font-size: 30px;
-            font-weight: 600;
-        }
-        p {
-            font-size: 20px;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
+    @media screen and (max-width: 768px) {
+        height: 35%;
+        background-position: top;
+        background-size: contain;
+    }
+    @media screen and (max-width: 420px) {
+        height: 75%;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 }
 
@@ -153,9 +193,15 @@ img {
     margin: 20px 40px;
     padding: 15px 0px;
     position: relative;
+    @media screen and (max-width: 420px) {
+        margin: 20px;
+    }
     h2 {
         font-size: 40px;
         font-weight: 300;
+        @media screen and (max-width: 420px) {
+            font-size: 30px;
+        }
     }
     .box-cards-info {
         width: 70%;
@@ -163,29 +209,46 @@ img {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @media screen and (max-width: 420px) {
+            flex-direction: column;
+            justify-content: center;
+            width: 90%;
+        }
         .card-info {
             flex: 0 1 calc(30% - 10px);
+            @media screen and (max-width: 420px) {
+                flex: 0 1 90%;
+            }
             .info-img {
                 text-align: center;
                 i {
                     font-size: 90px;
                     color: $color-text;
+                    @media screen and (max-width: 420px) {
+                        font-size: 60px;
+                    }
                 }
             }
             .info-text {
                 text-align: center;
-                width: 100%;
+                width: 90%;
                 margin: 15px auto;
                 h3 {
                     font-size: 25px;
                     font-weight: 600;
                     color: $color-text;
                     margin-bottom: 10px !important;
+                    @media screen and (max-width: 420px) {
+                        font-size: 20px;
+                    }
                 }
                 p {
                     font-size: 20px;
                     font-weight: 300;
                     letter-spacing: 2px;
+                    @media screen and (max-width: 420px) {
+                        font-size: 16px;
+                    }
                 }
             }
         }
@@ -198,10 +261,16 @@ img {
     display: flex;
     justify-content: center;
     position: relative;
+    @media screen and (max-width: 420px) {
+        flex-direction: column;
+    }
     .box-img-informativo {
         flex: 0 1 40%;
         img {
             width: 100%;
+        }
+        @media screen and (max-width: 420px) {
+            order: 0;
         }
     }
     .box-texto-informativo {
@@ -213,12 +282,20 @@ img {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        @media screen and (max-width: 420px) {
+            padding: 10px;
+            order: 1;
+        }
         h3 {
             font-size: 35px;
             font-weight: 600;
             letter-spacing: 1px;
             color: #000;
             margin-bottom: 60px !important;
+            @media screen and (max-width: 420px) {
+                font-size: 23px;
+                margin-bottom: 10px !important;
+            }
         }
         p {
             font-size: 23px;
@@ -226,6 +303,10 @@ img {
             letter-spacing: 2px;
             color: gray;
             width: 80%;
+            @media screen and (max-width: 420px) {
+                font-size: 18px;
+                width: 90%;
+            }
         }
     }
 }
@@ -239,9 +320,16 @@ img {
     margin: 30px auto;
     padding: 20px;
     position: relative;
+    @media screen and (max-width: 420px) {
+        width: 100%;
+        padding: 0px;
+    }
     h2 {
         font-size: 40px;
         font-weight: 300;
+        @media screen and (max-width: 420px) {
+            font-size: 30px;
+        }
     }
     .box-options-cards {
         width: 40%;
@@ -249,12 +337,24 @@ img {
         justify-content: space-between;
         align-items: center;
         margin-top: 20px;
-        .option-card-img {
-            text-align: center;
-            margin-bottom: 15px;
-            i {
-                font-size: 60px;
-                color: $color-text;
+        @media screen and (max-width: 420px) {
+            width: 90%;
+            justify-content: space-around;
+        }
+        .option-card {
+            flex: 0 1 calc(50% - 10px);
+            display: flex;
+            flex-direction: column;
+            .option-card-img {
+                text-align: center;
+                margin-bottom: 15px;
+                i {
+                    font-size: 60px;
+                    color: $color-text;
+                }
+            }
+            a {
+                color: #fff;
             }
         }
     }
@@ -270,12 +370,26 @@ img {
     background-size: cover;
     border-radius: 20px;
     position: relative;
+    box-shadow: 0px 6px 19px 1px grey;
+    @media screen and (max-width: 420px) {
+        width: 90%;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+    }
     .box-datos-login {
         width: 40%;
         float: right;
         background: #fff;
         height: 100%;
         border-radius: 0px 20px 20px 0px;
+        @media screen and (max-width: 420px) {
+            width: 100%;
+            height: 55%;
+            border-radius: 0px 0px 20px 20px;
+        }
         form {
             display: flex;
             flex-direction: column;
@@ -283,12 +397,32 @@ img {
             align-items: center;
             height: 70%;
             margin-top: 30px;
+            @media screen and (max-width: 420px) {
+                height: 100%;
+                margin-top: 0;
+            }
             h3 {
                 font-size: 50px;
                 color: $color-text;
                 font-weight: 600;
                 letter-spacing: 1px;
                 text-transform: capitalize;
+                @media screen and (max-width: 420px) {
+                    font-size: 40px;
+                    margin-bottom: 10px !important;
+                }
+            }
+            span {
+                display: none;
+                font-size: 18px;
+                color: red;
+                font-weight: 300;
+                letter-spacing: 2px;
+                font-style: oblique;
+                margin-bottom: 15px;
+                @media screen and (max-width: 420px) {
+                    font-size: 15px;
+                }
             }
             .datos-form {
                 display: flex;
@@ -305,6 +439,7 @@ img {
                     font-weight: 600;
                     color: $color-text;
                     outline: none;
+                    border: 1px solid $color-text;
                 }
             }
             .login-options {
@@ -315,6 +450,11 @@ img {
                 button {
                     width: 100%;
                     margin-bottom: 20px;
+                    border: 2px solid #409A04;
+                    @media screen and (max-width: 420px) {
+                        width: 50%;
+                        padding: 10px;
+                    }
                 }
                 a {
                     border: none;
@@ -338,4 +478,7 @@ img {
     align-items: center;
     position: relative;
     bottom: 0;
+    @media screen and (max-width: 420px) {
+        font-size: 13px;
+    }
 }

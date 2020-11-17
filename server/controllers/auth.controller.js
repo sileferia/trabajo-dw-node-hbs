@@ -38,20 +38,21 @@ authController.registro = async(req, res, next) => {
 }
 
 authController.login = async(req, res, next) => {
+    console.log(req.body)
     passport.authenticate(
         'local-login',
         (err, user, info) => {
             if (err) { return next(err) }
             if (!user) {
-                return res.status(200).json({
+                return res.status(400).json({
                     status: 0,
+                    error: "FALLO AL AUTENTICAR",
                     message: req.flash()
                 })
             }
-            req.session.userid = user._id;
             return res.status(200).json({
                 user_id: user._id,
-                token: req.session.userid,
+                token: user._id,
             });
         }
     )(req, res, next)
@@ -59,7 +60,6 @@ authController.login = async(req, res, next) => {
 
 authController.logout = async(req, res, next) => {
     req.session.destroy();
-    req.session.userid = null;
     req.logout();
     res.json({
         status: 1,

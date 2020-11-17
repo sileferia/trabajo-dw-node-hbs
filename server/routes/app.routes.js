@@ -37,6 +37,7 @@ AppRouter.get('/home', appController.Home);
 AppRouter.get('/about', appController.About);
 AppRouter.get('/login', appController.Login);
 AppRouter.get('/register', appController.Register);
+AppRouter.get('/logout', appController.Logout);
 
 
 
@@ -53,7 +54,7 @@ AppRouter.post('/auth/register', authController.registro);
 AppRouter.post('/auth/login', authController.login);
 
 // Ruta que hace logout
-AppRouter.get('/auth/logout', authController.logout)
+// AppRouter.get('/auth/logout', authController.logout)
 
 
 

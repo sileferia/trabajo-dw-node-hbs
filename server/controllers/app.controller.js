@@ -38,6 +38,11 @@ appController.productosUsuario = async(req, res) => {
     res.render('productosUser');
 }
 
+appController.Logout = async(req, res) => {
+
+    res.render('index');
+}
+
 
 
 module.exports = appController;
