@@ -119,7 +119,7 @@ $(document).ready(() => {
         if (data.status === 1) {
             window.location.href = "/login";
         } else {
-            const message = data.message;
+            const message = data.message.messageError[0];
             $('.error-register').show();
             $('.error-register').text(message);
             $('.datos-form input').css('border', '1px solid red');
