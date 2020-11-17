@@ -48,7 +48,6 @@ $(document).ready(() => {
         }
 
         const response = await fetch("https://artesanias-hbs.herokuapp.com/auth/login", request);
-        console.log(response);
 
         const data = await response.json();
 
@@ -78,8 +77,6 @@ $(document).ready(() => {
 
         const formRegistro = $('.form-register')[0];
 
-        console.log(formRegistro);
-
         const dataRegistro = {
             rol: formRegistro['rol'].value,
             tipoId: formRegistro['tipoId'].value,
@@ -93,7 +90,13 @@ $(document).ready(() => {
             password: formRegistro['password'].value,
         }
 
-        console.log(dataRegistro);
+        $('.box-padre').css('display', "flex")
+        $('.btn-register').hide();
+        registro(dataRegistro)
+            .then((response) => {
+                $('.box-padre').css('display', "none")
+                $('.btn-register').show();
+            })
 
     })
 
@@ -133,7 +136,6 @@ $(document).ready(() => {
     }
 
     $('.logout-a a').click(async() => {
-        console.log('logout');
 
         const request = {
             method: 'GET'

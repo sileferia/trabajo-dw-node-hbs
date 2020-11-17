@@ -38,6 +38,8 @@ AppRouter.get('/about', appController.About);
 AppRouter.get('/login', appController.Login);
 AppRouter.get('/register', appController.Register);
 AppRouter.get('/logout', appController.Logout);
+AppRouter.get('/productos', appController.Productos);
+
 
 
 
@@ -63,7 +65,7 @@ AppRouter.post('/auth/login', authController.login);
 // RUTAS PARA LOS PRODUCTOS
 /* START */
 // Método para obtener todos los productos
-AppRouter.get('/productos', productosController.getProductos);
+// AppRouter.get('/productos', productosController.getProductos);
 
 // Metodo para crear un producto
 AppRouter.post('/productos/new', upload.single('imagen'), productosController.crearProducto);

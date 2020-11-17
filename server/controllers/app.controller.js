@@ -1,3 +1,5 @@
+const productosModel = require("../models/productos.model");
+
 // Creamos la constante para exportar las funciones o métodos
 const appController = {};
 
@@ -30,7 +32,12 @@ appController.Profile = async(req, res) => {
 
 appController.Productos = async(req, res) => {
 
-    res.render('productos');
+    const productos = await productosModel.find();
+
+    res.render('productos', {
+        productos
+    });
+
 }
 
 appController.productosUsuario = async(req, res) => {
