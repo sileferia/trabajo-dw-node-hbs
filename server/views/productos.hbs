@@ -3,13 +3,14 @@
 
     <pre>
         {{productos}}
-        <input type="text" name="productos" id="productos" value="{{productos}}">
+        <input type="text" name="productos" id="productos" value="{{imagen}}">
+        <img src="images/productos/{{imagen}}" alt="">
         
     </pre>
 
     <script>
         $(document).ready(() => {
-            const productosJson = JSON.stringify($('#productos')[0].value);
+            const productosJson = $('#productos')[0].value;
             console.log(productosJson);
         })
     </script>

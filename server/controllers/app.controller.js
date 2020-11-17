@@ -34,8 +34,19 @@ appController.Productos = async(req, res) => {
 
     const productos = await productosModel.find();
 
+    const imagenes = [];
+
+    productos.forEach((producto) => {
+        // console.log(producto);
+        imagenes.push(producto.nameImage);
+    })
+
+    // console.log(imagenes[1]);
+    const imagen = imagenes[0]
+    console.log(imagen);
+
     res.render('productos', {
-        productos
+        imagen: imagen
     });
 
 }
