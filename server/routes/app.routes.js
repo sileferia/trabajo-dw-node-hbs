@@ -38,6 +38,7 @@ AppRouter.get('/about', appController.About);
 AppRouter.get('/login', appController.Login);
 AppRouter.get('/register', appController.Register);
 AppRouter.get('/logout', appController.Logout);
+AppRouter.get('/perfil', appController.Perfil);
 AppRouter.get('/productos', appController.Productos);
 AppRouter.get('/carrito', appController.Carrito);
 
@@ -50,6 +51,8 @@ AppRouter.get('/carrito', appController.Carrito);
 /* START */
 // Ruta que crea un usuario
 AppRouter.post('/auth/register', authController.registro);
+AppRouter.get('/api/getUsuario', authController.getUsuario);
+
 
 // Ruta que hace login
 // AppRouter.get('/auth/login', authController.login);

@@ -57,5 +57,17 @@ functions.formatearPrecio = (precio = 0) => {
     return formatterPeso.format(precio);
 }
 
+functions.formatearPass = (passEncrypt = '') => {
+
+    const tam = passEncrypt.length;
+
+    let pass = '';
+    for (let i = 0; i < tam; i++) {
+        pass += '*';
+    }
+
+    return pass;
+}
+
 
 module.exports = functions;

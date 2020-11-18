@@ -1,3 +1,4 @@
+const authModel = require("../models/auth.model");
 const productosModel = require("../models/productos.model");
 const functions = require("../utils/functions/functions");
 
@@ -26,7 +27,7 @@ appController.Register = async(req, res) => {
 }
 
 
-appController.Profile = async(req, res) => {
+appController.Perfil = async(req, res) => {
 
     res.render('profile');
 }

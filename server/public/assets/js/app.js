@@ -119,7 +119,7 @@ $(document).ready(() => {
             body: JSON.stringify(dataRegistro)
         }
 
-        const response = await fetch("http://artesanias-hbs.herokuapp.com/auth/register", request);
+        const response = await fetch("https://artesanias-hbs.herokuapp.com/auth/register", request);
 
         const data = await response.json();
 
@@ -161,6 +161,15 @@ $(document).ready(() => {
             $('.header').addClass('hg-auto');
         }
 
+    })
+
+    $('.toggle-menu-perfil').click(() => {
+
+        if ($('.box-menu-perfil').hasClass('barra-expand')) {
+            $('.box-menu-perfil').removeClass('barra-expand');
+        } else {
+            $('.box-menu-perfil').addClass('barra-expand');
+        }
     })
 
     $('.cantidad-carrito').click(() => {

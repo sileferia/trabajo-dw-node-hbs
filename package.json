@@ -6,6 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "nodemon server/server.js",
+        "sass": "sass --watch server/public/assets/css/styles.scss server/public/assets/css/styles.css",
         "start:heroku": "node server/server.js"
     },
     "author": "",

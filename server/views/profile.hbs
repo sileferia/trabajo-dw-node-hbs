@@ -1,1 +1,102 @@
-<h2>Perfil de {{nombre}}</h2>
+{{> head }}
+    {{> navbar}}
+    <div class="section-perfil">
+        {{> menuPerfil }}
+
+        <div class="box-opt-dashboard">
+            <div class="opt-perfil">
+                <h2 class="titulo-opt-perfil">Mi Perfil</h2>
+                <button class="button btn-edit-perfil">
+                    <i class="fas fa-edit"></i>
+                    Editar
+                </button>
+                <div class="box-datos-personales-opt">
+                    <h3 class="datos-personales-opt">Datos Personales</h3>
+                    <h4>CC:<span class="nid-opt"> 106740</span></h4>
+                    <h4>Nombres y Apellidos: <span class="nombres-opt">Deyser Andres Orozco Yepes</span></h4>
+                    <h4>Nacimiento: <span class="nacimiento-opt">1999-11-17</span></h4>
+                </div>
+                <div class="box-datos-contacto-opt">
+                    <h3 class="datos-contacto-opt">Datos de Contacto</h3>
+                    <h4>Telefono: <span class="tel-opt"> 982912</span></h4>
+                    <h4>Dirección: <span class="direccion-opt">El lazo, Lorica, Cordoba</span></h4>
+                </div>
+                <div class="box-datos-login-opt">
+                    <h3 class="datos-login-opt">Datos de Login</h3>
+                    <h4>Email: <span class="email-opt">email@email.com</span></h4>
+                    <h4>Password: <span class="direccion-opt">***************</span></h4>
+                </div>
+            </div>
+            <div class="opt-perfil-edit">
+                <form method="POST" class="form-edit">
+                    <h3>Editando <span class="skip-edit"><i class="fas fa-times"></i></span></h3>
+                    <div class="datos-form">
+                        <div class="datos-personales-box">
+                            <input type="text" class="rol" name="rol" id="rol" value="1" hidden>
+                            <span class="datos-personales">Datos Personales</span>
+                            <div class="box-nid">
+                                <select class="tipoId" name="tipoId" id="tipoId">
+                                    <option value="1" selected disabled>Selecione</option>
+                                    <option value="CE">Cedula Extranjera</option>
+                                    <option value="CC">Cedula</option>
+                                    <option value="TI">Tarjeta de Identidad</option>
+                                </select>
+                                <input type="text" class="nid" name="nid" id="nid" placeholder="#">
+                                <span class="error-css"></span>
+                            </div>
+                            <input type="text" class="nombres" name="nombres" id="nombres" placeholder="Nombres">
+                            <input type="text" class="apellidos" name="apellidos" id="apellidos" placeholder="Apellidos">
+                            <input type="date" class="nacimiento" name="nacimiento" id="nacimiento" placeholder="12-12-2020">
+                        </div>
+                        
+                        <div class="datos-contacto-login-box">        
+                            <span class="datos-contacto">Datos de Contacto</span>
+                            <input type="tel" class="telefono" name="telefono" id="telefono" placeholder="Telefono">
+                            <input type="text" class="direccion" name="direccion" id="direccion" placeholder="Direccion, Barrio, Municipio, Departamento">
+                            <span class="datos-login">Datos de Login</span>
+                            <input type="email" class="email" name="email" id="email" placeholder="example@artesanias.com">
+                            <input type="password" class="pass" name="password" id="password" placeholder="**********">
+                            <span class="error-password"></span>
+                        </div>
+                    </div>
+                    <div class="register-options">
+                        {{> cargando}}
+                        <button class="button btn-register">Editar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="opt-productos">
+                {{> perfilProductos}}
+            </div>
+            <div class="opt-ventas">
+                {{> perfilVentas}}
+            </div>
+            <div class="opt-compras">
+                {{> perfilCompras}}
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(() => {
+            
+            
+
+            $('.btn-edit-perfil').click(() => {
+
+                const formEdit = $('.form-edit')[0];
+                    console.log(formEdit);
+
+                $('.opt-perfil-edit').show();
+
+            })
+
+            $('.skip-edit').click(() => {
+                $('.opt-perfil-edit').hide();
+            })
+
+        })
+    </script>
+{{> footer}}    

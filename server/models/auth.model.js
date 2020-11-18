@@ -37,7 +37,7 @@ const usuarioSchema = new Schema({
     telefono: {
         type: Number
     },
-    direcciones: {
+    direccion: {
         type: String
     }
 })

@@ -1,5 +1,6 @@
 const passport = require('passport');
 const authModel = require('../models/auth.model');
+const functions = require('../utils/functions/functions');
 
 // Creamos la constante para exportar las funciones o métodos
 const authController = {};
@@ -39,6 +40,24 @@ authController.registro = async(req, res, next) => {
             });
         }
     )(req, res, next)
+}
+
+authController.getUsuario = async(req, res) => {
+
+    const usuario = await authModel.findById(req.params.idUser);
+
+    let pass = functions.formatearPass(usuario.password);
+
+    res.json({
+        tipoId: usuario.tipoId,
+        nid: usuario.nid,
+        nombres: usuario.nombres + ' ' + usuario.apellidos,
+        nacimiento: usuario.nacimiento,
+        telefono: usuario.telefono,
+        direccion: usuario.direccion,
+        email: usuario.email,
+        pass
+    })
 }
 
 authController.login = async(req, res, next) => {
