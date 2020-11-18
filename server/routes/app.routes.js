@@ -51,7 +51,7 @@ AppRouter.get('/carrito', appController.Carrito);
 /* START */
 // Ruta que crea un usuario
 AppRouter.post('/auth/register', authController.registro);
-AppRouter.get('/api/getUsuario', authController.getUsuario);
+AppRouter.get('/api/getUsuario/:idUser', authController.getUsuario);
 
 
 // Ruta que hace login
