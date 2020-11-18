@@ -39,6 +39,7 @@ AppRouter.get('/login', appController.Login);
 AppRouter.get('/register', appController.Register);
 AppRouter.get('/logout', appController.Logout);
 AppRouter.get('/productos', appController.Productos);
+AppRouter.get('/carrito', appController.Carrito);
 
 
 

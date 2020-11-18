@@ -1,18 +1,72 @@
 {{> head }}
     {{> navbar }}
 
-    <pre>
-        {{productos}}
-        <input type="text" name="productos" id="productos" value="{{imagen}}">
-        <img src="images/productos/{{imagen}}" alt="">
-        
-    </pre>
+    <div class="box-productos">
+        <div class="box-cards-productos">
+        </div>
+    </div>
+
+    <input type="text" class="html" hidden value="{{html}}">
 
     <script>
+
         $(document).ready(() => {
-            const productosJson = $('#productos')[0].value;
-            console.log(productosJson);
+
+            const html = $('.html').val();
+            $('.box-cards-productos').append(html);
+
+            $('.btn-agg-carro').click(() => {
+                const producto = $('.json-productos').val();
+                aggCarrito(producto);
+            })
+
+            function aggCarrito(producto) {
+
+                if(!localStorage.getItem('token')){
+                    window.location.href="/login";
+                    return;
+                }
+
+                const tokenUser = localStorage.getItem('token');
+
+                let carrito = [];
+
+                if(localStorage.getItem(tokenUser)){
+                    carrito = JSON.parse(localStorage.getItem(tokenUser));  
+                    carrito.push(producto)
+                    actualizarCarrito(carrito, tokenUser);
+                } else {
+                    carrito.push(producto);
+                    actualizarCarrito(carrito, tokenUser);
+                }
+                
+                $('.cantidad-carrito').text(carrito.length);
+                
+                $('.box-carrito').addClass('new-producto');
+                setTimeout(() => {
+                    $('.box-carrito').removeClass('new-producto');
+                }, 3000)
+
+            }
+
+            function actualizarCarrito(carrito = [], tokenUser){
+                const json = JSON.stringify(carrito);
+                localStorage.setItem(tokenUser, json);
+                
+            }
+
+            function cargarProducto(carrito = []) {
+
+                carrito.forEach((producto) => {
+                    
+                })
+
+            }
+
         })
     </script>
+
+    {{> carrito}}
+
 
 {{> footer}}

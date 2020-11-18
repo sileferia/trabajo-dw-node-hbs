@@ -1,4 +1,5 @@
 const productosModel = require("../models/productos.model");
+const functions = require("../utils/functions/functions");
 
 // Creamos la constante para exportar las funciones o métodos
 const appController = {};
@@ -34,19 +35,10 @@ appController.Productos = async(req, res) => {
 
     const productos = await productosModel.find();
 
-    const imagenes = [];
-
-    productos.forEach((producto) => {
-        // console.log(producto);
-        imagenes.push(producto.nameImage);
-    })
-
-    // console.log(imagenes[1]);
-    const imagen = imagenes[0]
-    console.log(imagen);
+    const html = functions.crearHtml(productos);
 
     res.render('productos', {
-        imagen: imagen
+        html
     });
 
 }
@@ -59,6 +51,11 @@ appController.productosUsuario = async(req, res) => {
 appController.Logout = async(req, res) => {
 
     res.render('index');
+}
+
+appController.Carrito = async(req, res) => {
+
+    res.render('productos-carrito');
 }
 
 

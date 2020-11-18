@@ -9,7 +9,7 @@ const productosController = {};
 productosController.crearProducto = async(req, res) => {
 
     if (req.file) {
-        req.body.imagen = req.file.destination
+        req.body.imagen = "/images/productos/" + req.file.filename
     }
 
     // Creamos un nuevo producto

@@ -1,10 +1,13 @@
 $(document).ready(() => {
     $('.box-padre').css('display', "none")
     if (localStorage.getItem('token')) {
+        let carrito = [];
         $('.login-a').hide();
         $('.perfil-a').show();
         $('.logout-a').show();
+        carrito = JSON.parse(localStorage.getItem(localStorage.getItem('token')));
 
+        $('.cantidad-carrito').text(carrito.length);
     } else {
         $('.login-a').show();
         $('.perfil-a').hide();
@@ -26,6 +29,7 @@ $(document).ready(() => {
         login(dataLogin)
             .then((response) => {
                 $('.box-padre').css('display', "none")
+                $('.login-options .button').show();
             })
 
     });
@@ -157,5 +161,11 @@ $(document).ready(() => {
             $('.header').addClass('hg-auto');
         }
 
+    })
+
+    $('.cantidad-carrito').click(() => {
+
+        console.log();
+        window.location.href = "/carrito";
     })
 })
