@@ -5,9 +5,13 @@ $(document).ready(() => {
         $('.login-a').hide();
         $('.perfil-a').show();
         $('.logout-a').show();
-        carrito = JSON.parse(localStorage.getItem(localStorage.getItem('token')));
 
-        $('.cantidad-carrito').text(carrito.length);
+        if (localStorage.getItem(localStorage.getItem('token'))) {
+            carrito = JSON.parse(localStorage.getItem(localStorage.getItem('token')));
+            $('.cantidad-carrito').text(carrito.length);
+        } else {
+            $('.cantidad-carrito').text('0');
+        }
     } else {
         $('.login-a').show();
         $('.perfil-a').hide();
@@ -139,13 +143,13 @@ $(document).ready(() => {
 
     }
 
-    $('.logout-a a').click(() => {
+    $('.logout-a a').click(async() => {
 
         const request = {
             method: 'GET'
         }
 
-        const response = fetch("https://artesanias-hbs.herokuapp.com/logout", request);
+        const response = await fetch("https://artesanias-hbs.herokuapp.com/logout", request);
 
         if (response.ok) {
             window.location.href = "/home";
@@ -155,7 +159,6 @@ $(document).ready(() => {
 
     $('.toggle').click(() => {
 
-        console.log('CLICK')
         if ($('.header').hasClass('hg-auto')) {
             $('.header').removeClass('hg-auto');
         } else {
