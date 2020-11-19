@@ -31,7 +31,7 @@ functions.crearHtml = (productos = []) => {
         html += `
         <div class="box-card">
             <div class="box-img-producto">
-                <img src="/images/" alt="">
+                <img src="/images/${urlImagen}" alt="">
             </div>
             <div class="box-info-producto">
                 <div class="box-datos-producto">
