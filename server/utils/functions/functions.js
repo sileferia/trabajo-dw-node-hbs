@@ -20,11 +20,18 @@ functions.crearHtml = (productos = []) => {
             "precio": precioFormateado
         }
 
+        let urlImagen = "";
+        if (producto.nameImage === "") {
+            urlImagen = `app/no-image-webp`;
+        } else {
+            urlImagen = `productos/${producto.nameImage}`;
+        }
+
         const productoString = JSON.stringify(productoJson);
         html += `
         <div class="box-card">
             <div class="box-img-producto">
-                <img src="/images/productos/${producto.nameImage}" alt="">
+                <img src="/images/" alt="">
             </div>
             <div class="box-info-producto">
                 <div class="box-datos-producto">

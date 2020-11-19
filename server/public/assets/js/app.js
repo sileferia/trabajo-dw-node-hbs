@@ -177,4 +177,10 @@ $(document).ready(() => {
         console.log();
         window.location.href = "/carrito";
     })
+
+
+    $('.btn-edit-pro').click(() => {
+        console.log('CLICK');
+        console.log($('.card-pro-perfil'));
+    })
 })

@@ -52,6 +52,7 @@ AppRouter.get('/carrito', appController.Carrito);
 // Ruta que crea un usuario
 AppRouter.post('/auth/register', authController.registro);
 AppRouter.get('/api/getUsuario/:idUser', authController.getUsuario);
+AppRouter.post('/api/editUsuario/:idUser', authController.editUsuario);
 
 
 // Ruta que hace login
@@ -76,6 +77,9 @@ AppRouter.post('/productos/new', upload.single('imagen'), productosController.cr
 
 // Método para mostrar un producto
 AppRouter.get('/productos/ver/:idProducto', productosController.verProducto);
+
+// Método para obtener todos los productos de un Usuario
+AppRouter.get('/api/getProductosUsuario/:idUser', productosController.getProductosUsuario);
 
 // Método para editar producto
 AppRouter.put('/productos/edit/:idProducto', upload.single('imagen'), productosController.editarProducto);

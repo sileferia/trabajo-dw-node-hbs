@@ -1,4 +1,5 @@
 const passport = require('passport');
+const { ObjectId, ObjectID } = require('mongodb');
 const authModel = require('../models/auth.model');
 const functions = require('../utils/functions/functions');
 
@@ -51,12 +52,29 @@ authController.getUsuario = async(req, res) => {
     res.json({
         tipoId: usuario.tipoId,
         nid: usuario.nid,
-        nombres: usuario.nombres + ' ' + usuario.apellidos,
+        nombres: usuario.nombres,
+        apellidos: usuario.apellidos,
         nacimiento: usuario.nacimiento,
         telefono: usuario.telefono,
         direccion: usuario.direccion,
         email: usuario.email,
         pass
+    })
+}
+
+authController.editUsuario = async(req, res) => {
+
+    console.log(req.body);
+
+    const usuario = {
+        ...req.body
+    }
+
+    await authModel.updateOne({ "_id": ObjectID(req.params.idUser) }, { $set: usuario });
+
+    res.json({
+        status: 1,
+        message: "Usuario Actualizado"
     })
 }
 

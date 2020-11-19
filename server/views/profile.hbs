@@ -12,19 +12,19 @@
                 </button>
                 <div class="box-datos-personales-opt">
                     <h3 class="datos-personales-opt">Datos Personales</h3>
-                    <h4>CC:<span class="nid-opt"> 106740</span></h4>
-                    <h4>Nombres y Apellidos: <span class="nombres-opt">Deyser Andres Orozco Yepes</span></h4>
-                    <h4>Nacimiento: <span class="nacimiento-opt">1999-11-17</span></h4>
+                    <h4 class="tipoId-h4"></h4>
+                    <h4>Nombres y Apellidos: <span class="nombres-opt"></span></h4>
+                    <h4>Nacimiento: <span class="nacimiento-opt"></span></h4>
                 </div>
                 <div class="box-datos-contacto-opt">
                     <h3 class="datos-contacto-opt">Datos de Contacto</h3>
-                    <h4>Telefono: <span class="tel-opt"> 982912</span></h4>
-                    <h4>Dirección: <span class="direccion-opt">El lazo, Lorica, Cordoba</span></h4>
+                    <h4>Telefono: <span class="tel-opt"></span></h4>
+                    <h4>Dirección: <span class="direccion-opt"></span></h4>
                 </div>
                 <div class="box-datos-login-opt">
                     <h3 class="datos-login-opt">Datos de Login</h3>
-                    <h4>Email: <span class="email-opt">email@email.com</span></h4>
-                    <h4>Password: <span class="direccion-opt">***************</span></h4>
+                    <h4>Email: <span class="email-opt"></span></h4>
+                    <h4>Password: <span class="direccion-opt"></span></h4>
                 </div>
             </div>
             <div class="opt-perfil-edit">
@@ -61,19 +61,43 @@
                     </div>
                     <div class="register-options">
                         {{> cargando}}
-                        <button class="button btn-register">Editar</button>
+                        <button class="button btn-edit">Editar</button>
                     </div>
                 </form>
             </div>
 
             <div class="opt-productos">
-                {{> perfilProductos}}
+                <h3 class="titulo-opt-productos">Mis Productos</h3>
+                <button class="button btn-agg-pro">
+                    <i class="fas fa-plus    "></i>
+                    Agregar
+                </button>
+                <div class="box-card-pro-perfil">
+                </div>
+                <div class="box-alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>No hay productos que mostrar 😕</h3>
+                </div>
+                {{> cargando}}
+                <form method="POST" class="producto-edit">
+                    <h3 class="titulo-opt">Editando <span class="skip-edit-pro"><i class="fas fa-times"></i></span></h3>
+                    <div class="datos-form">
+                        <input type="text" class="id-producto-form" name="id-producto-form" id="id-producto-form" hidden>
+                        <input type="text" class="nombre" name="nombre" id="nombre" placeholder="Nombre" required>
+                        <input type="text" class="descripcion" name="descripcion" id="descripcion" placeholder="Descripcion">
+                        <input type="number" class="precio" name="precio" id="precio" placeholder="$0.0" required>
+                        <input type="number" class="stock" name="stock" id="stock" placeholder="$0.0" required>
+                        <input type="file" class="imagen" name="imagen" id="imagen">
+                        <input type="text" class="nameImage" name="nameImage" id="nameImage" hidden>
+                    </div>
+                    <div class="edit-pro-opts">
+                        <button class="button btn-action-pro">Editar</button>
+                    </div>
+                </form>
             </div>
             <div class="opt-ventas">
-                {{> perfilVentas}}
             </div>
             <div class="opt-compras">
-                {{> perfilCompras}}
             </div>
         </div>
     </div>
@@ -82,21 +106,313 @@
     <script>
         $(document).ready(() => {
             
-            
+            getUsuario(false);
+            getProductosUsuario();
+            $('.opt-productos').css('display', 'none');
+            $('.producto-edit').hide();
 
+            // Método para editar el perfil
             $('.btn-edit-perfil').click(() => {
-
                 const formEdit = $('.form-edit')[0];
-                    console.log(formEdit);
-
                 $('.opt-perfil-edit').show();
+                getUsuario(true)
 
             })
 
             $('.skip-edit').click(() => {
                 $('.opt-perfil-edit').hide();
             })
+    
+            $('.perfil-productos').click(() => {
+                $('.opt-perfil').hide()
+                $('.opt-perfil-edit').hide();
+                $('.opt-productos').css('display', 'flex');
+            })
 
+            $('.btn-agg-pro').click(() => {
+                $('.box-padre').css('display', "none");
+                $('.titulo-opt').text("Agregando");
+                let span = '&nbsp; <span class="skip-edit-pro"><i class="fas fa-times"></i></span>';
+                $('.titulo-opt').append(span);
+                $('.btn-action-pro').text("Agregar");
+                $('.producto-edit').show();
+                
+                $('.skip-edit-pro').click(() => {
+                    $('.producto-edit').trigger('reset');
+                    $('.producto-edit').hide();
+                })
+
+            })
+
+            $('.form-edit').submit((e) => {
+                e.preventDefault();
+
+                const formEdit = $('.form-edit')[0];
+
+                const dataUsuario = {
+                        rol: 2,
+                        tipoId: formEdit['tipoId'].value,
+                        nid: formEdit['nid'].value,
+                        nombress: formEdit['nombres'].value,
+                        apellidos: formEdit['apellidos'].value,
+                        nacimiento: formEdit['nacimiento'].value,
+                        telefono: formEdit['telefono'].value ,
+                        direccion: formEdit['direccion'].value,
+                        email: formEdit['email'].value
+                }
+
+                if(formEdit['password'].value !== ""){
+                    dataUsuario.password = formEdit['password'].value;
+                }
+                console.log(dataUsuario);
+                editUsuario(dataUsuario);
+            })
+           
+            function getUsuario(edit=false){
+
+                const tokenUser = localStorage.getItem('token');
+                
+                const origin = window.location.origin;
+                const URL = `${origin}/api/getUsuario/${tokenUser}`;
+
+                $.ajax({
+                    url: URL,
+                    type: 'GET',
+                    success: (response)=>{
+                        let nid = `<span class="nid-opt">${response.nid}</span>`
+                        $('.tipoId-h4').text(response.tipoId+':');
+                        $('.tipoId-h4').append(nid);
+                        $('.nombres-opt').text(response.nombres+' '+ response.apellidos);
+                        $('.nacimiento-opt').text(response.nacimiento);
+                        $('.telefono-opt').text(response.telefono);
+                        $('.direccion-opt').text(response.direccion);
+                        $('.email-opt').text(response.email);
+                        $('.pass-opt').text(response.pass);
+
+                        if(edit){
+                            const formEdit = $('.form-edit')[0];
+                            const fechaFormateada = response.nacimiento.split('-').reverse().join('-')
+                            
+                            formEdit['tipoId'].value = response.tipoId;
+                            formEdit['nid'].value = response.nid;
+                            formEdit['nombres'].value = response.nombres;
+                            formEdit['apellidos'].value = response.apellidos;
+                            formEdit['nacimiento'].value = fechaFormateada;
+                            formEdit['telefono'].value = response.telefono;
+                            formEdit['direccion'].value = response.direccion;
+                            formEdit['email'].value = response.email;
+                        }
+                    }    
+                })
+
+            }
+
+            function editUsuario(dataUsuario){
+                const tokenUser = localStorage.getItem('token');
+                
+                const origin = window.location.origin;
+                const URL = `${origin}/api/editUsuario/${tokenUser}`;
+
+                $.post(URL, dataUsuario, (response) => {
+                    $('.opt-perfil-edit').hide();
+                    getUsuario(false);
+                    console.log(response);
+                })
+            }
+
+
+             $('.producto-edit').submit((e)=>{
+                e.preventDefault();
+                $('.box-padre').css('display', 'flex')
+                $('.btn-action-pro').hide();
+
+                let idProducto = $('.id-producto-form').val();
+
+                const action = idProducto == "" ? "Agg" : "Edit";
+                const formProducto = $('.producto-edit')[0];
+                const imagen = $('.producto-edit')[0]['imagen'].files[0];
+
+                let dataProducto = {
+                    idUser: localStorage.getItem('token'),
+                    nombre: formProducto['nombre'].value,
+                    descripcion: formProducto['descripcion'].value,
+                    nameImage: formProducto['nameImage'].value,
+                    imagen: imagen,
+                    precio: formProducto['precio'].value,
+                    stock: formProducto['stock'].value
+                }
+                console.log(dataProducto);
+
+                if(action === "Agg"){
+                    actionProducto(dataProducto, 'productos/new', 'POST');
+                } else if(action === "Edit"){
+                    actionProducto(dataProducto, 'productos/edit/'+idProducto, 'PUT');
+                }
+            })
+
+
+             function getProductosUsuario(){
+                $('.box-padre').css('display', 'flex')
+                $('.box-alert').css('display', 'none')
+                const origin = window.location.origin;
+                const tokenUser = localStorage.getItem('token');
+                const URL = `${origin}/api/getProductosUsuario/${tokenUser}`;
+                $.ajax({
+                    url: URL,
+                    type: 'GET',
+                    success: (response) => {
+
+                        $('.box-padre').css('display', 'none')
+                        console.log(response.length);
+                        if(response.length > 0){                        
+                            $('.box-alert').css('display', 'none')
+                        } else {
+                            $('.box-alert').css('display', 'flex')
+                        }
+
+                        let html = '';
+                        $('.card-pro-perfil').remove()
+
+                        response.forEach((producto) => {
+                            let precioFormateado = formatePeso(producto.precio);
+                            let urlImagen = "";
+                                if (producto.nameImage === "") {
+                                    urlImagen = `app/no-image.webp`;
+                                } else {
+                                    urlImagen = `productos/${producto.nameImage}`;
+                                }
+                            html += `
+                            <div class="card-pro-perfil" id-producto="${producto._id}">
+                                <input type="text" hidden value="${producto._id}" class="id-producto">
+                                <div class="box-img-pro">
+                                    <img src="/images/${urlImagen}" alt="">
+                                </div>
+                                <div class="box-info-pro">
+                                    <h3 class="nombre-pro">${producto.nombre}</h3>
+                                    <span class="precio-pro">${precioFormateado}</span>
+                                    <p class="desc-pro">${producto.descripcion}</p>
+                                </div>
+                                <div class="box-opts-pro">
+                                    <button class="btn-edit-pro button">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-delete-pro button">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            `
+                            
+                        })
+                        $('.box-card-pro-perfil').append(html);
+
+                        $('.btn-edit-pro').click(function() {
+                            let elemento = $(this)[0].parentElement.parentElement;
+                            idProducto = $(elemento).attr("id-producto");
+                            console.log(idProducto)
+                            $('.box-padre').css('display', 'flex')
+                            getProducto(idProducto);
+                        })
+
+                        $('.btn-delete-pro').click(function() {
+                            let elemento = $(this)[0].parentElement.parentElement;
+                            idProducto = $(elemento).attr("id-producto");
+                            console.log(idProducto);
+                            $('.box-padre').css('display', 'flex')
+                            deleteProducto(idProducto);
+                        })
+                    }
+                })
+
+
+            }
+
+            function actionProducto(dataProducto, url, method){
+                const origin = window.location.origin;
+                const URL = `${origin}/${url}`;
+
+                let form = new FormData();
+                form.append("idUser", dataProducto.idUser);
+                form.append("nombre", dataProducto.nombre);
+                form.append("descripcion", dataProducto.descripcion);
+                form.append("nameImage", dataProducto.nameImage);
+
+                if(dataProducto.imagen != undefined){
+                    form.append("imagen", dataProducto.imagen, dataProducto.imagen.name);
+                }else {
+                    form.append("imagen", "");
+                }
+                form.append("precio", dataProducto.precio);
+                form.append("stock", dataProducto.stock);
+
+                $.ajax({
+                    url: URL,
+                    type: method,
+                    mimeType: "multipart/form-data",
+                    processData: false,  
+                    contentType: false,
+                    data: form,
+                    success: (response) => {
+                        $('.box-padre').css('display', 'none')
+                        $('.btn-action-pro').show();
+                        $('.btn-action-pro').show();
+                        $('.producto-edit').trigger('reset');
+                        $('.producto-edit').hide();
+                        getProductosUsuario()
+                    }
+                })
+            }
+
+            function getProducto(idProducto = ""){
+                
+                const origin = window.location.origin;
+                const URL = `${origin}/productos/ver/${idProducto}`;
+
+                $.ajax({
+                    url: URL,
+                    type: 'GET',
+                    success: (response) => {
+                        const producto = response.producto[0];
+                        $('.producto-edit').trigger('reset');
+                        const formEdit = $('.producto-edit')[0];
+                        console.log(formEdit);
+                        formEdit['id-producto-form'].value = idProducto;
+                        formEdit['nombre'].value = producto.nombre;
+                        formEdit['descripcion'].value = producto.descripcion;
+                        formEdit['precio'].value = producto.precio;
+                        formEdit['stock'].value = producto.stock;
+                        formEdit['nameImage'].value = producto.nameImage;
+                        $('.box-padre').css('display', 'none')
+                        $('.producto-edit').show();
+                    }
+                })
+
+            }
+
+            function deleteProducto(idProducto = ""){
+                const origin = window.location.origin;
+                const URL = `${origin}/productos/delete/${idProducto}`;
+
+                $.ajax({
+                    url: URL,
+                    type: 'DELETE',
+                    success: (response) => {
+                        console.log(response);
+                        getProductosUsuario()
+                        $('.box-padre').css('display', 'none')
+                    }
+                })
+            }
+
+            function formatePeso(precio = 0){
+                const formatterPeso = new Intl.NumberFormat('es-CO', {
+                    style: 'currency',
+                    currency: 'COP',
+                    minimumFractionDigits: 0
+                })
+
+                return formatterPeso.format(precio);
+            }
         })
     </script>
 {{> footer}}    

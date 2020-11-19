@@ -55,6 +55,14 @@ productosController.getProductos = async(req, res) => {
 
 }
 
+productosController.getProductosUsuario = async(req, res) => {
+    const query = { "idUser": req.params.idUser };
+
+    const productos = await productosModel.find(query);
+
+    res.json(productos);
+}
+
 // Método para editar un producto
 productosController.editarProducto = async(req, res) => {
 
@@ -80,9 +88,11 @@ productosController.eliminarProducto = async(req, res) => {
 
     const producto = await productosModel.findOne(query);
 
-    await fs.unlink(producto.imagen, (err) => {
-        console.log(err);
-    });
+    if (producto.imagen) {
+        await fs.unlink(producto.imagen, (err) => {
+            console.log(err);
+        });
+    }
 
 
     if (producto) {
