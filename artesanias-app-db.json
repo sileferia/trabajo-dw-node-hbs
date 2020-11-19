@@ -1,0 +1,135 @@
+{
+    "usuarios": [{
+            "_id": {
+                "$oid": "5fb159e7ef645821e0942e1a"
+            },
+            "direccion": "El lazo, Lorica, Cordoba",
+            "rol": "2",
+            "tipoId": "CC",
+            "nid": "654321",
+            "nombres": "Silena Maria",
+            "apellidos": "Feria Gaspar",
+            "nacimiento": "1999-11-15",
+            "email": "silena.feria2016@gmail.com",
+            "password": "$2a$10$R4hfD8PMyimfVhcCFJd14Ok.yUjeKqy0IuDet0Yg723Fm5pRr/v26",
+            "telefono": 3100000,
+            "__v": 0
+        },
+        {
+            "_id": {
+                "$oid": "5fb198ddef645821e0942e1b"
+            },
+            "direcciones": [],
+            "rol": "1",
+            "nid": "admin",
+            "nombres": "Admin",
+            "apellidos": "Admin",
+            "nacimiento": "15-11-1999",
+            "email": "admin@artesanias.com",
+            "password": "$2a$10$07Q1DRQWiM/8uSfdZGxZJOS3kc0JmTDLHhLdy.mD3Qom/vv9PdYkO",
+            "__v": 0
+        },
+        {
+            "_id": {
+                "$oid": "5fb3ef4b16520b0017c1431a"
+            },
+            "rol": "1",
+            "tipoId": "CC",
+            "nid": "123456789",
+            "nombres": "Artesanias ",
+            "apellidos": "Example",
+            "nacimiento": "1999-11-17",
+            "telefono": 3111111,
+            "direccion": "Barrio Kenedy, Lorica, Cordoba",
+            "email": "artesanias@artesanias.app",
+            "password": "$2a$10$Y59yG9tj0cJIZ9HKD.HGTeOdsw3FC55tMN4y9xwqwDrLjfeyH7Jf.",
+            "__v": 0
+        },
+        {
+            "_id": {
+                "$oid": "5fb5e72c8ef52e0017a4ce74"
+            },
+            "rol": "2",
+            "tipoId": "CC",
+            "nid": "1067954456",
+            "nombres": "Mateo",
+            "apellidos": "palomo",
+            "nacimiento": "",
+            "telefono": 3.215293793E+09,
+            "direccion": "MONOTERIA",
+            "email": "map970330@gmail.com",
+            "password": "$2a$10$B5RCeYbN5scdP4qEYYPDquH4aOqTHhuLFXAnEzrUM5loLHVkdiM2.",
+            "__v": 0
+        },
+        {
+            "_id": {
+                "$oid": "5fb6711a183da300175f0a95"
+            },
+            "rol": "1",
+            "tipoId": "CC",
+            "nid": "12345678",
+            "nombres": "maria",
+            "apellidos": "fernandez",
+            "nacimiento": "1989-06-16",
+            "telefono": 3.00725044E+09,
+            "direccion": "lorica",
+            "email": "claudiaiscome@hotmail.com",
+            "password": "$2a$10$B0hKXHJYGxlfnCv8DH.w4uJmOc70BYbcduQa/W1y/SbvISXCCqBrC",
+            "__v": 0
+        }
+    ],
+    "productos": [{
+            "_id": {
+                "$oid": "5fb5e26c8ef52e0017a4ce72"
+            },
+            "idUser": "5fb159e7ef645821e0942e1a",
+            "nombre": "Sobrero Vueltiao'",
+            "descripcion": "Sombrero Vueltiao' 100% Tuchinero",
+            "nameImage": "img-20201021-wa00261605755500517.webp",
+            "precio": 150000,
+            "stock": 10,
+            "imagen": "/app/server/public/images/productos/img-20201021-wa00261605755500517.webp",
+            "__v": 0
+        },
+        {
+            "_id": {
+                "$oid": "5fb5e2f98ef52e0017a4ce73"
+            },
+            "idUser": "5fb159e7ef645821e0942e1a",
+            "nombre": "Hamaca de colores",
+            "descripcion": "Hermosa Hamaca de colores, Diseñada 100% con materiales Guajiros",
+            "nameImage": "img-20201021-wa00271605755641643.webp",
+            "precio": 180000,
+            "stock": 5,
+            "imagen": "/app/server/public/images/productos/img-20201021-wa00271605755641643.webp",
+            "__v": 0
+        },
+        {
+            "_id": {
+                "$oid": "5fb5e7c88ef52e0017a4ce75"
+            },
+            "idUser": "5fb5e72c8ef52e0017a4ce74",
+            "nombre": "MOCHILA ",
+            "descripcion": "A PURA PITA",
+            "nameImage": "database1605756872021.webp",
+            "precio": 250000,
+            "stock": 2,
+            "imagen": "",
+            "__v": 0
+        },
+        {
+            "_id": {
+                "$oid": "5fb5ec2fc6d67100176adf46"
+            },
+            "idUser": "5fb159e7ef645821e0942e1a",
+            "nombre": "Jarron Artesano",
+            "descripcion": "Originario  de La comunidad campesina de Guacamayas, de origen prehispánico",
+            "nameImage": "2661_jarron-fique-cuello-de-botella-g1605757987388.webp",
+            "precio": 100000,
+            "stock": 10,
+            "imagen": "/images/productos/2661_jarron-fique-cuello-de-botella-g1605757987388.webp",
+            "__v": 0
+        }
+
+    ]
+}
