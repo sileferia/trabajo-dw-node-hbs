@@ -139,13 +139,13 @@ $(document).ready(() => {
 
     }
 
-    $('.logout-a a').click(async() => {
+    $('.logout-a a').click(() => {
 
         const request = {
             method: 'GET'
         }
 
-        const response = await fetch("https://artesanias-hbs.herokuapp.com/logout", request);
+        const response = fetch("https://artesanias-hbs.herokuapp.com/logout", request);
 
         if (response.ok) {
             window.location.href = "/home";
@@ -155,6 +155,7 @@ $(document).ready(() => {
 
     $('.toggle').click(() => {
 
+        console.log('CLICK')
         if ($('.header').hasClass('hg-auto')) {
             $('.header').removeClass('hg-auto');
         } else {
